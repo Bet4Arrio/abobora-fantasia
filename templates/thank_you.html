@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Obrigado{% endblock %}
+
+{% block content %}
+<!-- templates/thank_you.html -->
+<div class="container mt-5">
+    <h1>Thank you for voting!</h1>
+    <p>Your vote has been recorded.</p>
+    {% comment %} <a href="{% url 'fantasy_poll' %}" class="btn btn-primary">Back to Poll</a> {% endcomment %}
+</div>
+{% endblock %}

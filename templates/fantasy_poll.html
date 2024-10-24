@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Fantasias Abobora{% endblock %}
+
+{% block content %}
+<ul class="bg-primary sticky-top p-1 text-center">
+    <h5 class="text-white text-center">
+        <span x-text="message">aaaaaaaaa</span>
+    </h5>
+  </ul>
+<div class="container mt-5 text-center" >
+    <h3>Vote na sua Fantasia favorita</h3>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.email }}
+        </div>
+        <!-- Display Radio Buttons with Fantasy choices -->
+        {% for fantasy in fantasies %}
+            <div class="form-check container-fluid align-items-center">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-10 text-center">
+                        <input  @click="getFantasy" class="form-check-input" type="radio" name="fantasy" id="fantasy{{ fantasy.pk }}" value="{{ fantasy.pk }}">
+                        <label class="form-check-label" for="fantasy{{ fantasy.pk }}">
+                            <img src="{{ fantasy.image.url }}" alt="{{ fantasy.name }}" class="img-thumbnail" style="max-width: 70vw;">
+                            <p id="fantasy{{ fantasy.pk }}Name">
+                                {{ fantasy.name }}
+                            </p>
+                        </label>
+                    </div>
+                    
+                </div>
+                <hr>
+            </div>
+        {% endfor %}
+        
+        <!-- Display email field -->
+        
+        <div class="row align-items-center justify-content-center sticky-bottom my-5 pb-3">
+
+            <button type="submit" class="btn col-5 rounded btn-success ">Votar</button>
+        </div>
+    </form>
+</div>
+
+{% endblock  %}
+
+{% block extra_js %}
+    <script>
+        function votacao(){
+            return {
+                message: "Nada",
+                getFantasy(e){
+                    
+                    {% comment %} this.message = item.parent.document.querySelector("label>p").innerHTML {% endcomment %}
+                    f  = e.currentTarget.id 
+                    this.message = "Voto: "+document.querySelector("#"+f+"Name").innerHTML
+                    console.log(e.currentTarget.id);
+                    console.log(document.querySelector("#"+f+"Name").innerHTML);
+                }
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+<!-- templates/fantasy_vote_chart.html -->
+{% block header %}
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock  %}
+
+{% block  content %}
+<div class="container mt-5  text-center">
+    <h1>Resultados fantasias</h1>
+
+    <!-- Display the Plotly graph -->
+    
+
+    <!-- Display the Top 3 Fantasies with an Accordion -->
+    <h2 class="mt-5 text-center">Top 3 Fantasias</h2>
+    <div class="row justify-content-center mt-5">
+        {% for fantasy in top_3 %}
+        <div class="col-4">
+            <div class="card" style="max-width: 18rem;">
+                <img src="{{ fantasy.image.url }}" class="card-img-top"  alt="{{ fantasy.name }}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ fantasy.name }}</h5>
+                  <p class="card-text">Votos: {{ fantasy.votos }}</p>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <div class="mt-4">
+                {{ graph_html|safe }}
+            </div> 
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock  %}
+
