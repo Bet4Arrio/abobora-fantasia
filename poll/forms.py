@@ -7,7 +7,7 @@ from .models import *
         
 class VoteForm(forms.Form):
     fantasy = forms.ChoiceField(
-        required=True
+        required=True,
         widget=forms.RadioSelect,
         label="Choose your favorite"
     )
