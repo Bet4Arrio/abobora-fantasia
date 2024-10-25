@@ -10,7 +10,7 @@ def fantasy_vote_chart(request):
     # Get the count of votes for each Fantasy
     fantasias = Fantasy.objects.annotate(
         votos = Count("votes")
-        ).all().order_by('votos')
+        ).all().order_by('-votos')
         
     fantasy_votes = (
         Vote.objects.values('fantasy__name')
