@@ -20,7 +20,7 @@
             <div class="form-check container-fluid align-items-center">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-10 text-center">
-                        <input  @click="getFantasy" class="form-check-input" type="radio" name="fantasy" id="fantasy{{ fantasy.pk }}" value="{{ fantasy.pk }}">
+                        <input  @click="getFantasy" style="display: hidden;" class="form-check-input" type="radio" name="fantasy" id="fantasy{{ fantasy.pk }}" value="{{ fantasy.pk }}">
                         <label class="form-check-label" for="fantasy{{ fantasy.pk }}">
                             <img src="{{ fantasy.image.url }}" alt="{{ fantasy.name }}" class="img-thumbnail" style="max-width: 70vw;">
                             <p id="fantasy{{ fantasy.pk }}Name">
@@ -49,7 +49,7 @@
     <script>
         function votacao(){
             return {
-                message: "Nada",
+                message: "Não selecionado",
                 getFantasy(e){
                     
                     {% comment %} this.message = item.parent.document.querySelector("label>p").innerHTML {% endcomment %}
